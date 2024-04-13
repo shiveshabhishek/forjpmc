@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/gopaljayanthi/forjpmc.git
-        revision: main
+        revision: master
         files:
         - path: "addons/**/dev/config.json"
   strategy: 
@@ -59,15 +59,14 @@ spec:
       # annotations:
       #   argocd.argoproj.io/sync-wave: '{{syncwave}}'
     spec:
-      project: incredible-dev-blue-addons
+      project: default
       sources:
         - repoURL: '{{repoURL}}'
           targetRevision: '{{targetRevision}}'
           chart: '{{chart}}'
         - repoURL: https://github.com/gopaljayanthi/forjpmc.git
-          targetRevision: main
+          targetRevision: master
           path: configmap
       destination:
         server: 'https://kubernetes.default.svc'
-        name: '{{name}}'
         namespace: '{{namespace}}'

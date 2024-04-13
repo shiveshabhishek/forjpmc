@@ -1,0 +1,10 @@
+{
+  "repoURL": "732813442182.dkr.ecr.us-east-1.amazonaws.com",
+  "targetRevision": "0.5.0",
+  "chart": "helm-test-chart",
+  "valuesPath": "addons/ecrapp/values.yaml",
+  "valuesOverlayPath": "addons/ecrapp/dev/values-overlay.yaml",
+  "namespace": "addons2",
+  "name": "ecrapp2",
+  "syncwave" : "one"
+}
