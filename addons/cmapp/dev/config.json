@@ -6,5 +6,6 @@
   "valuesOverlayPath": "addons/ecrapp/dev/values-overlay.yaml",
   "namespace": "addons2",
   "name": "ecrapp2",
-  "syncwave" : "one"
+  "syncwave" : "one",
+  "abcd": ""
 }
