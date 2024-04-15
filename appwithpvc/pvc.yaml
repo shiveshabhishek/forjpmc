@@ -11,4 +11,4 @@ spec:
     requests:
       storage: 1Gi
   volumeMode: Filesystem
-  volumeName: pv94
+  volumeName: pv101
