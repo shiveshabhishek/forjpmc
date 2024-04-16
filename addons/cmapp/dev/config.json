@@ -1,5 +1,5 @@
 {
-  "repoURL": "732813442182.dkr.ecr.us-east-1.amazonaws.com",
+  "repoURL": "https://github.com/gopaljayanthi/forjpmc.git",
   "targetRevision": "0.5.0",
   "chart": "",
   "valuesPath": "addons/ecrapp/values.yaml",
