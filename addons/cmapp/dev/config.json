@@ -7,5 +7,6 @@
   "namespace": "addons2",
   "name": "ecrapp2",
   "syncwave" : "one",
-  "abcd": ""
+  "abcd": "",
+  "ref": "main"
 }
