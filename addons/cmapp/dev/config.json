@@ -1,6 +1,6 @@
 {
   "repoURL": "https://github.com/gopaljayanthi/forjpmc.git",
-  "targetRevision": "0.5.0",
+  "targetRevision": "master",
   "chart": "",
   "valuesPath": "addons/ecrapp/values.yaml",
   "valuesOverlayPath": "addons/ecrapp/dev/values-overlay.yaml",
