@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cronjobapp
+  namespace: tcbargo
+  finalizers:
+    # Alternatively, you can use background cascading deletion
+  - resources-finalizer.argocd.argoproj.io/background
+spec:
+  destination:
+    namespace: jpmc
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+       path: cronjob
+       repoURL: https://github.com/gopaljayanthi/forjpmc.git
+       targetRevision: HEAD
