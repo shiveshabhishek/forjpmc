@@ -2,13 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: appwithpvc
-  namespace: tcbargo
+  namespace: argocd
   finalizers:
     # Alternatively, you can use background cascading deletion
   - resources-finalizer.argocd.argoproj.io/background
 spec:
   destination:
-    namespace: jpmc
+    namespace: addons
     server: https://kubernetes.default.svc
   project: default
   source:
