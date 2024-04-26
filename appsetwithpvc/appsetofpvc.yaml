@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/gopaljayanthi/forjpmc.git
         targetRevision: HEAD
-        path: appwithpvc
+        path: configmap
       destination:
         server: '{{url}}'
         namespace: jpmc
