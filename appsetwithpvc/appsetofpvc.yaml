@@ -10,7 +10,7 @@ spec:
       elements:
       - cluster: in-cluster
         url: https://kubernetes.default.svc
-      - cluster: isdmkp-default-gke_isd-opsmx-marketplace_us-central1-c_base-isdmktp-cluster-context
+      - cluster: isdmkp
         url: https://146.148.79.161
   template:
     metadata:
