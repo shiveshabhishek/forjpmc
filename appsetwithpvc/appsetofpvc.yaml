@@ -3,7 +3,7 @@ kind: ApplicationSet
 metadata:
   name: appsetwithpvc
 spec:
-  startegy:
+  strategy:
     type: AllAtOnce
   generators:
   - list:
