@@ -15,3 +15,6 @@ spec:
        path: largecm
        repoURL: https://github.com/gopaljayanthi/forjpmc.git
        targetRevision: HEAD
+       #syncPolicy:
+       #syncOptions:
+       #- Replace=true
