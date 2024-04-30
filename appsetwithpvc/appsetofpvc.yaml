@@ -4,7 +4,21 @@ metadata:
   name: appsetwithpvc
 spec:
   strategy:
-    type: AllAtOnce
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: cluster
+              operator: In
+              values:
+                - in-cluster
+          maxUpdate: 100%
+        - matchExpressions:
+            - key: cluster
+              operator: In
+              values:
+                - isdmkp
+          maxUpdate: 100%
   generators:
   - list:
       elements:
