@@ -28,7 +28,7 @@ spec:
         url: https://146.148.79.161
   template:
     metadata:
-      name: '{{cluster}}-appwithpvc'
+      name: '{{cluster}}-appwithcm'
     spec:
       project: default
       source:
