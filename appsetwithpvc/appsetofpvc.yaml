@@ -40,3 +40,7 @@ spec:
         namespace: jpmc
       syncPolicy:
         automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - PrunePropagationPolicy=orphan
