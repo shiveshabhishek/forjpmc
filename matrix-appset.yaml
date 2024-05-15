@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: matrix-example
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
