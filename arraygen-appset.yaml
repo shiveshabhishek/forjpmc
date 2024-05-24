@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: arrayappset
+  namespace: tcbargo
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/gopaljayanthi/forjpmc.git
+          revision: HEAD
+          files:
+          - path: arraygen/array.yaml
+      - list:
+          elementsYaml: "{{ .key.components.namespace | toJson }}"
+  template:
+    metadata:
+      name: '{{.namespace}}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          selfHeal: true    
+        syncOptions:
+        - CreateNamespace=true        
+      sources:
+        - chart: '{{.chart}}'
+          repoURL: '{{.repoUrl}}'
+          targetRevision: '{{.version}}'
+          helm:
+            releaseName: '{{.releaseName}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.namespace}}'
