@@ -20,7 +20,7 @@ spec:
           repoURL: https://github.com/gopaljayanthi/forjpmc.git
           revision: master
           files:
-          - path: "g2/**/ns/*"
+          - path: "g2/dev/ns/*"
           pathParamPrefix: nmsp
   template:
     metadata:
