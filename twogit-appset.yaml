@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: twogit
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/gopaljayanthi/forjpmc.git
+          revision: master
+          files:
+          - path: "addons/cmapp/dev/config.json"
+          pathParamPrefix: config
+      - git:
+          repoURL: https://github.com/gopaljayanthi/forjpmc.git
+          revision: master
+          files:
+          - path: "addons/cmapp/dev/nmsp.json"
+          pathParamPrefix: nmsp
+  template:
+    metadata:
+      name: '{{config.name}}-{{.nmsp.namespace}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gopaljayanthi/forjpmc.git
+        targetRevision: HEAD
+        path: configmap
+      destination:
+        server: '{{config.url}}'
+        namespace: '{{.nmsp.namespace}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - PrunePropagationPolicy=orphan
