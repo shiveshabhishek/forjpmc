@@ -4,6 +4,4 @@ data:
   secondvalue: secondkey
 kind: ConfigMap
 metadata:
-  labels:
-    app.kubernetes.io/instance: twosources
   name: forg2

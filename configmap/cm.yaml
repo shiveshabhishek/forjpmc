@@ -4,6 +4,4 @@ data:
   secondkey: secondvalue
 kind: ConfigMap
 metadata:
-  labels:
-    app.kubernetes.io/instance: twosources
   name: twosources
