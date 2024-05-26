@@ -24,7 +24,7 @@ spec:
           pathParamPrefix: nmsp
   template:
     metadata:
-      name: '{{.name}}-{{.namespace}}'
+      name: '{{.name}}-{{.nmsp.path.filename}}'
     spec:
       project: default
       source:
@@ -33,7 +33,7 @@ spec:
         path: configmap
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.namespace}}'
+        namespace: '{{.nmsp.path.filename}}'
       syncPolicy:
         automated: {}
         syncOptions:
