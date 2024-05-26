@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: g2
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/gopaljayanthi/forjpmc.git
+          revision: master
+          files:
+          - path: "g2/**/config.json"
+          pathParamPrefix: config
+      - git:
+          repoURL: https://github.com/gopaljayanthi/forjpmc.git
+          revision: master
+          files:
+          - path: "g2/**/ns/*"
+          pathParamPrefix: nmsp
+  template:
+    metadata:
+      name: '{{.name}}-{{.nmsp.path.filename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gopaljayanthi/forjpmc.git
+        targetRevision: HEAD
+        path: configmap
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.nmsp.path.filename}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - PrunePropagationPolicy=orphan
