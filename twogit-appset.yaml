@@ -14,17 +14,17 @@ spec:
           repoURL: https://github.com/gopaljayanthi/forjpmc.git
           revision: master
           files:
-          - path: "addons/cmapp/dev/config.json"
+          - path: "twogit/dev/config.json"
           pathParamPrefix: config
       - git:
           repoURL: https://github.com/gopaljayanthi/forjpmc.git
           revision: master
           files:
-          - path: "addons/cmapp/dev/nmsp.json"
+          - path: "twogit/dev/nmsp.json"
           pathParamPrefix: nmsp
   template:
     metadata:
-      name: '{{config.name}}-{{.nmsp.namespace}}'
+      name: '{{.name}}-{{.namespace}}'
     spec:
       project: default
       source:
@@ -32,8 +32,8 @@ spec:
         targetRevision: HEAD
         path: configmap
       destination:
-        server: '{{config.url}}'
-        namespace: '{{.nmsp.namespace}}'
+        server: https://kubernetes.default.svc
+        namespace: '{{.namespace}}'
       syncPolicy:
         automated: {}
         syncOptions:
