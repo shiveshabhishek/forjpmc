@@ -20,7 +20,7 @@ spec:
           repoURL: https://github.com/gopaljayanthi/forjpmc.git
           revision: master
           files:
-          - path: "g2/dev/ns/*"
+          - path: "g2/**/ns/*"
           pathParamPrefix: nmsp
   template:
     metadata:
@@ -30,7 +30,7 @@ spec:
       source:
         repoURL: https://github.com/gopaljayanthi/forjpmc.git
         targetRevision: HEAD
-        path: configmap
+        path: '{{.path}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.nmsp.path.filename}}'
