@@ -17,9 +17,9 @@ spec:
       - matrix:
           generators:
           - list:
-            elementsYaml: "{{ .key.namespaces | toJson }}"
+              elementsYaml: "{{ .key.components | toJson }}"
           - list:
-            elementsYaml: "{{ .key.components | toJson }}"
+              elementsYaml: "{{ .key.namespaces | toJson }}"
   template:
     metadata:
       name: '{{.namespace}}'
