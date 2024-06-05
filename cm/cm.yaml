@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   myvalue: mykey
   secondvalue: secondkey
+  thisdkey: thisdvalue
 kind: ConfigMap
 metadata:
   name: forg2
