@@ -23,9 +23,14 @@ jobs:
     - name: Get commit ID
       id: commit
       run: echo "COMMIT_ID=${GITHUB_SHA::7}" >> $GITHUB_ENV
+      
+    - name: Set Application Name
+      id: set_app_name
+      run: echo "::set-output name=app_name::${{ github.event.client_payload['argocd-application-name'] }}"
+
     - name: Create new branch with timestamp
       run: |
         git fetch origin master
         git checkout master
-        git checkout -b mainchart-qa--${{ env.COMMIT_ID }}-${{ env.TIMESTAMP }}
-        git push origin mainchart-qa--${{ env.COMMIT_ID }}-${{ env.TIMESTAMP }}
+        git checkout -b ${{ steps.set_app_name.outputs.app_name }}-${{ env.COMMIT_ID }}-${{ env.TIMESTAMP }}
+        git push origin ${{ steps.set_app_name.outputs.app_name }}-${{ env.COMMIT_ID }}-${{ env.TIMESTAMP }}
