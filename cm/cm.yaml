@@ -5,6 +5,7 @@ data:
   thisdkey: thisdvalue
   fourth: four
   fifth: five
+  sixth: six
 kind: ConfigMap
 metadata:
   name: forg2
