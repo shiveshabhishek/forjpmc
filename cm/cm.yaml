@@ -6,6 +6,7 @@ data:
   fourth: four
   fifth: five
   sixth: six
+  seventh: seven
 kind: ConfigMap
 metadata:
   name: forg2
