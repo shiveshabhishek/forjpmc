@@ -5,10 +5,10 @@ on:
     types: [argocd-event]
 
 jobs:
-  build:
+
+  run:
     permissions:
       contents: write
-  run:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
