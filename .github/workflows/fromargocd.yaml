@@ -5,6 +5,9 @@ on:
     types: [argocd-event]
 
 jobs:
+  build:
+    permissions:
+      contents: write
   run:
     runs-on: ubuntu-latest
     steps:
