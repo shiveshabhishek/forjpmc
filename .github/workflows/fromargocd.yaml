@@ -1,0 +1,29 @@
+name: ArgoCD Dispatch Workflow
+
+on:
+  repository_dispatch:
+    types: [argocd-event]
+
+jobs:
+  handle_argocd_event:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set Application Name
+        id: set_app_name
+        run: echo "::set-output name=app_name::${{ github.event.client_payload['argocd-application-name'] }}"
+
+      - name: Run for cm
+        if: steps.set_app_name.outputs.app_name == 'cm'
+        run: |
+          echo "Running steps for cm"
+          # Add your steps for app-qa here
+
+      - name: Run for cm2
+        if: steps.set_app_name.outputs.app_name == 'cm2'
+        run: |
+          echo "Running steps for cm2"
+          # Add your steps for app-prod here
