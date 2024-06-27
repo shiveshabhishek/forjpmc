@@ -4,6 +4,7 @@ data:
   secondvalue: secondkey
   thisdkey: thisdvalue
   fourth: four
+  fifth: five
 kind: ConfigMap
 metadata:
   name: forg2
