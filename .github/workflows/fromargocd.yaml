@@ -1,11 +1,11 @@
-name: ArgoCD Dispatch Workflow
+name: Create Branch with Application Name
 
 on:
   repository_dispatch:
     types: [argocd-event]
 
 jobs:
-  handle_argocd_event:
+  create_branch:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,14 +16,16 @@ jobs:
         id: set_app_name
         run: echo "::set-output name=app_name::${{ github.event.client_payload['argocd-application-name'] }}"
 
-      - name: Run for cm
-        if: steps.set_app_name.outputs.app_name == 'cm'
-        run: |
-          echo "Running steps for cm"
-          # Add your steps for app-qa here
+      - name: Get Latest Commit ID
+        id: get_commit
+        run: echo "::set-output name=commit_id::$(git rev-parse --short HEAD)"
 
-      - name: Run for cm2
-        if: steps.set_app_name.outputs.app_name == 'cm2'
+      - name: Generate Timestamp
+        id: get_timestamp
+        run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M')"
+
+      - name: Create New Branch
         run: |
-          echo "Running steps for cm2"
-          # Add your steps for app-prod here
+          BRANCH_NAME="${{ steps.set_app_name.outputs.app_name }}-${{ steps.get_commit.outputs.commit_id }}-${{ steps.get_timestamp.outputs.timestamp }}"
+          git checkout -b $BRANCH_NAME
+          git push origin $BRANCH_NAME
