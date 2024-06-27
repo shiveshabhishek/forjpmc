@@ -8,6 +8,7 @@ data:
   sixth: six
   seventh: seven
   eigth: eight
+  ninth: nine
 kind: ConfigMap
 metadata:
   name: forg2
