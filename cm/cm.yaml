@@ -3,6 +3,7 @@ data:
   myvalue: mykey
   secondvalue: secondkey
   thisdkey: thisdvalue
+  fourth: four
 kind: ConfigMap
 metadata:
   name: forg2
