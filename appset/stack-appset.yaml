@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/gopaljayanthi/forjpmc.git
         revision: HEAD
         files:
-        - path: "addons/kube-prometheus-stack/dev/config.json"
+        - path: "stack/kube-prometheus-stack/dev/config.json"
   syncPolicy:
     preserveResourcesOnDeletion: true
   strategy:
