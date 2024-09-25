@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+  name: guestbook
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: engineering-dev
+        env: env-dev
+      - cluster: engineering-prod
+        env: env-prod
+  goTemplate: true
+  goTemplateOptions:
+  - missingkey=error
+  strategy:
+    rollingSync:
+      steps:
+      - matchExpressions:
+        - key: envLabel
+          operator: In
+          values:
+          - env-dev
+      - matchExpressions:
+        - key: envLabel
+          operator: In
+          values:
+          - env-prod
+    type: RollingSync
+  template:
+    metadata:
+      labels:
+        envLabel: '{{.env}}'
+      name: '{{.cluster}}-guestbook'
+    spec:
+      destination:
+        namespace: '{{.env}}'
+        server: https://kubernetes.default.svc
+      project: default
+      source:
+        path: applicationset/examples/list-generator/guestbook/{{.cluster}}
+        repoURL: https://github.com/gopaljayanthi/argo-cd
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

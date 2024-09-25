@@ -16,18 +16,18 @@ spec:
     type: AllAtOnce
   template:
     metadata:
-      name: 'in-cluster-{{ "{{name}}" }}'
+      name: in-cluster-{{name}}
     spec:
       project: default
       sources:
-        - repoURL: {{ "'{{repoURL}}'" }}
-          targetRevision: {{ "'{{targetRevision}}'" }}
-          chart: {{ "'{{chart}}'" }}
+        - repoURL: '{{repoURL}}'
+          targetRevision: '{{targetRevision}}'
+          chart: '{{chart}}'
           helm:
-            releaseName: {{ "'{{name}}'" }}
+            releaseName: '{{name}}'
       destination:
         name: in-cluster
-        namespace: {{ "'{{namespace}}'" }}
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           prune: true
