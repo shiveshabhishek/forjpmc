@@ -2,6 +2,15 @@ kind: Service
 apiVersion: v1
 metadata:
   name: "nginx"
+  annotations:
+    artifact.spinnaker.io/location: tcbargo
+    artifact.spinnaker.io/name: nginx
+    artifact.spinnaker.io/type: kubernetes/service
+    moniker.spinnaker.io/application: spinargoapp
+    moniker.spinnaker.io/cluster: service nginx
+  labels:
+    app.kubernetes.io/managed-by: spinnaker
+    app.kubernetes.io/name: spinargoapp
 spec:
   selector:
     app: "nginx"
