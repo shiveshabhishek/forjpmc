@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  annotations:
+    artifact.spinnaker.io/location: tcbargo
+    artifact.spinnaker.io/name: nginx
+    artifact.spinnaker.io/type: kubernetes/deployment
+    moniker.spinnaker.io/application: spinargoapp
+    moniker.spinnaker.io/cluster: deployment nginx
+  labels:
+    app.kubernetes.io/managed-by: spinnaker
+    app.kubernetes.io/name: spinargoapp
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
