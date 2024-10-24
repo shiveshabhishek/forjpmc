@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: "nginx"
+  name: nginx
   annotations:
     artifact.spinnaker.io/location: tcbargo
     artifact.spinnaker.io/name: nginx
