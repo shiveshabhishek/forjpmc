@@ -18,7 +18,7 @@ spec:
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
-       annotations:
+      annotations:
         artifact.spinnaker.io/location: spin-argo-trigger
         artifact.spinnaker.io/name: nginx-deployment
         artifact.spinnaker.io/type: kubernetes/deployment
