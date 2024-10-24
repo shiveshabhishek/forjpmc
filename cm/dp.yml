@@ -4,10 +4,10 @@ metadata:
   name: nginx-deployment
   annotations:
     artifact.spinnaker.io/location: spin-argo-trigger
-    artifact.spinnaker.io/name: nginx
+    artifact.spinnaker.io/name: nginx-deployment
     artifact.spinnaker.io/type: kubernetes/deployment
     moniker.spinnaker.io/application: spinargoapp
-    moniker.spinnaker.io/cluster: deployment nginx
+    moniker.spinnaker.io/cluster: deployment nginx-deployment
   labels:
     app.kubernetes.io/managed-by: spinnaker
     app.kubernetes.io/name: spinargoapp
@@ -18,7 +18,7 @@ spec:
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
-      annotations:
+       annotations:
         artifact.spinnaker.io/location: spin-argo-trigger
         artifact.spinnaker.io/name: nginx-deployment
         artifact.spinnaker.io/type: kubernetes/deployment
