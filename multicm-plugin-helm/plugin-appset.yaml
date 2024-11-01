@@ -37,7 +37,7 @@ spec:
           {{- if .contents }}
           {{- range $fileName, $fileContents := .contents }}
             - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
-              value: '{{ $fileContents }}'
+              value: '{{ $fileContents | base64dec }}'
           {{- end }}
             - name: "name"
               value: '{{.name}}'
