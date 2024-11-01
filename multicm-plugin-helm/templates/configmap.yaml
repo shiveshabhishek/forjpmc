@@ -6,7 +6,7 @@ kind: ConfigMap
 metadata:
   name: {{ $fileName | replace "." "-" }}
 data:
-  {{ $fileName }}: |-
+  "{{ $fileName }}": |-
     {{- $fileContents | nindent 4 }}
 {{- end }}
 {{- end }}
