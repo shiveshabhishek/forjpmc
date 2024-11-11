@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-config
 data:
-  myconfig: |
-{{ .Values.configMap.data.myconfig | indent 4 }}
+  myconfigfile.txt: |
+{{ .Values.configMap.data.myconfigfile.txt | indent 4 }}
