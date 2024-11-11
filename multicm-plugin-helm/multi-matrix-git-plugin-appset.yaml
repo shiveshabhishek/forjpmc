@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: matrix-multicm-myplugin
+  name: multi-matrix-multicm-myplugin
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -15,13 +15,13 @@ spec:
               revision: HEAD
               files:
                 - path: "test-git-files-generator/*/config.json"
-              requeueAfterSeconds: 300
+              requeueAfterSeconds: 180
           - git:
               repoURL: https://github.com/gopaljayanthi/forjpmc.git
               revision: HEAD
               files:
                 - path: "test-git-files-generator/*/config.json"
-              requeueAfterSeconds: 300
+              requeueAfterSeconds: 180
       - plugin:
               configMapRef:
                 name: applicationset-hello-plugin
@@ -33,7 +33,7 @@ spec:
               #requeueAfterSeconds: 120
   template:
     metadata:
-      name: '{{.name}}'
+      name: '{{.name}}-{{ .label }}'
       annotations:
         myananotation: '{{ .label }}'
     spec:
@@ -44,7 +44,10 @@ spec:
         targetRevision: master
       destination:
         server: https://kubernetes.default.svc
-        namespace: default
+        namespace: '{{.name}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
   templatePatch: |
     spec:
       source:
