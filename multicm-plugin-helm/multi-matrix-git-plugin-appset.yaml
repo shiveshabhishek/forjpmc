@@ -44,7 +44,7 @@ spec:
         targetRevision: master
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.name}}'
+        namespace: '{{.name}}-{{ .label }}'
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
