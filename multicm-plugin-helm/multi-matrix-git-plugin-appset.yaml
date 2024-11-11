@@ -11,17 +11,17 @@ spec:
       - matrix:
           generators:
           - git:
-              repoURL: https://github.com/gopaljayanthi/wisetech-k8s-repo.git
+              repoURL: https://github.com/gopaljayanthi/forjpmc.git
               revision: HEAD
               files:
-                - path: "test-git-files-generator/*/config.json"
-              requeueAfterSeconds: 180
+                - path: "base/*/config.json"
+              requeueAfterSeconds: 360
           - git:
               repoURL: https://github.com/gopaljayanthi/forjpmc.git
               revision: HEAD
               files:
                 - path: "test-git-files-generator/*/config.json"
-              requeueAfterSeconds: 180
+              requeueAfterSeconds: 360
       - plugin:
               configMapRef:
                 name: applicationset-hello-plugin
@@ -46,8 +46,17 @@ spec:
         server: https://kubernetes.default.svc
         namespace: '{{.name}}-{{ .label }}'
       syncPolicy:
+        automated:
+          prune: true
+          allowEmpty: true
         syncOptions:
           - CreateNamespace=true
+        retry:
+          limit: 2
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 7m
   templatePatch: |
     spec:
       source:
