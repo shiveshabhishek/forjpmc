@@ -1,3 +1,4 @@
 {
-  "name":"dev-app"
+  "name":"dev-app",
+  "syncWave": "zero"
 }

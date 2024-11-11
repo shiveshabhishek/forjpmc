@@ -1,3 +1,4 @@
 {
-  "name":"prod-app"
+  "name":"prod-app",
+  "syncWave": "one"
 }

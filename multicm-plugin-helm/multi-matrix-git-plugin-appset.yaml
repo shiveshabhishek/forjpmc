@@ -31,11 +31,29 @@ spec:
                   branch: "master"
                   folder: "pluginfiles"
               #requeueAfterSeconds: 120
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+          - key: syncWave
+            operator: In
+            values:
+              - zero
+          maxUpdate: 100%
+        - matchExpressions:
+          - key: syncWave
+            operator: In
+            values:
+              - one
+          maxUpdate: 100%
   template:
     metadata:
       name: '{{.name}}-{{ .label }}'
       annotations:
         myananotation: '{{ .label }}'
+      labels:
+        syncWave: '{{ .syncWave }}'
     spec:
       project: default
       source:
