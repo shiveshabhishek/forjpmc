@@ -34,14 +34,6 @@ spec:
               mountPath: /app/app-config.yaml
               subPath: app-config.yaml
               readOnly: true
-            - name: github-integration
-              mountPath: /app/github-integration.yaml
-              subPath: github-integration.yaml
-              readOnly: true
-            - name: app-config-production
-              mountPath: /app/app-config.production.yaml
-              subPath: app-config.production.yaml
-              readOnly: true
       volumes:
         - name: app-config
           secret:
@@ -49,15 +41,3 @@ spec:
             items:
               - key: app-config.yaml
                 path: app-config.yaml
-        - name: github-integration
-          secret:
-            secretName: backstage-app-secret
-            items:
-              - key: github-integration.yaml
-                path: github-integration.yaml
-        - name: app-config-production
-          secret:
-            secretName: backstage-app-secret
-            items:
-              - key: app-config.production.yaml
-                path: app-config.production.yaml
