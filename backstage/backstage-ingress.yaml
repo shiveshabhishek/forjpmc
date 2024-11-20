@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  name: backstage-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: backstage.devops.opsmx.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: backstage
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - backstage.devops.opsmx.org
+    secretName: backstage-tls-certificate

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+  labels:
+    backstage.io/kubernetes-id: k8s-backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+        backstage.io/kubernetes-id: k8s-backstage
+    spec:
+      containers:
+        - name: backstage
+          image: giantswarm/backstage
+#public.ecr.aws/cnoe-io/backstage:v0.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 7007
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+            - secretRef:
+                name: backstage-secrets
+          volumeMounts:
+            - name: app-config
+              mountPath: /app/app-config.yaml
+              subPath: app-config.yaml
+              readOnly: true
+            - name: github-integration
+              mountPath: /app/github-integration.yaml
+              subPath: github-integration.yaml
+              readOnly: true
+            - name: app-config-production
+              mountPath: /app/app-config.production.yaml
+              subPath: app-config.production.yaml
+              readOnly: true
+      volumes:
+        - name: app-config
+          secret:
+            secretName: backstage-app-secret
+            items:
+              - key: app-config.yaml
+                path: app-config.yaml
+        - name: github-integration
+          secret:
+            secretName: backstage-app-secret
+            items:
+              - key: github-integration.yaml
+                path: github-integration.yaml
+        - name: app-config-production
+          secret:
+            secretName: backstage-app-secret
+            items:
+              - key: app-config.production.yaml
+                path: app-config.production.yaml
