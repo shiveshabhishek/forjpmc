@@ -1,5 +1,5 @@
 apiVersion: batch/v1
-kind: Joba
+kind: Job
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: Validate=false
@@ -18,7 +18,7 @@ spec:
         - command:
             - /bin/sh
             - '-c'
-            - echo Promotion is approved
+            - echo Promotion is approved; sleep 10;exit 1
             #; sleep 10;exit 1
           image: busybox
           imagePullPolicy: Always
