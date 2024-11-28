@@ -4,7 +4,7 @@ metadata:
   annotations:
     #argocd.argoproj.io/sync-options: Validate=false
     argocd.argoproj.io/sync-options: Force=true,Replace=true
-  name: job
+  name: test-bad-job
 spec:
   backoffLimit: 0
   completionMode: NonIndexed
