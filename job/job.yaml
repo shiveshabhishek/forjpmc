@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   annotations:
-    argocd.argoproj.io/sync-options: Validate=false
+    #argocd.argoproj.io/sync-options: Validate=false
     argocd.argoproj.io/sync-options: Force=true,Replace=true
   name: job
 spec:
@@ -18,7 +18,7 @@ spec:
         - command:
             - /bin/sh
             - '-c'
-            - echo Promotion is approved; sleep 10;exit 1
+            - echo hi; sleep 5;exit 1
             #; sleep 10;exit 1
           image: busybox
           imagePullPolicy: Always
