@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-options: Force=true,Replace=true
   name: job
 spec:
-  backoffLimit: 6
+  backoffLimit: 1
   completionMode: NonIndexed
   completions: 1
   parallelism: 1
