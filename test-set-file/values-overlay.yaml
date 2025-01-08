@@ -1,4 +1,0 @@
-configMap:
-  data:
-   configs:
-     "myconfigfile.txt": |-
