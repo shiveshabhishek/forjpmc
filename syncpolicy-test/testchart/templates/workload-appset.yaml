@@ -16,26 +16,26 @@ spec:
               generators:
                 - git:
                     repoURL: {{ $repo.repoUrl }}
-                    revision: {{ $repo.branch | default "main" }}
+                    revision: {{ $repo.branch | default "master" }}
                     files:
                       - path: "workloads/{{ $val.environment }}/*/config.json"
                     pathParamPrefix: config
                     requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
                 - git:
                     repoURL: {{ $repo.repoUrl }}
-                    revision: {{ $repo.branch | default "main" }}
+                    revision: {{ $repo.branch | default "master" }}
                     files:
                       - path: "base/{{ "{{.appName}}" }}/config.json"
                     pathParamPrefix: appConfig
                     requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
           - plugin:
               configMapRef:
-                name: configmap-plugin
+                name: applicationset-hello-plugin #configmap-plugin
               input:
                 parameters:
-                  branch: {{ $repo.branch | default "main" }}
-                  repo_path: "onyx-cd/{{ $repo.name }}"
-                  folder_path: '{{ "{{.configPath | default \"\"}}" }}' #Provided by git file generator
+                  branch: master #{{ $repo.branch | default "master" }}
+                  repo_name: gopaljayanthi/forjpmc #"onyx-cd/{{ $repo.name }}"
+                  folder_path: "pluginfiles" #folder_path: '{{ "{{.configPath | default \"\"}}" }}' #Provided by git file generator
               requeueAfterSeconds: {{ $repo.pluginRequeueInterval | default 1200 }}
   syncPolicy:
     preserveResourcesOnDeletion: {{ hasKey $repo "preserveResourcesOnDeletion" | ternary $repo.preserveResourcesOnDeletion true }}
@@ -81,14 +81,14 @@ spec:
       labels:
         syncWave: {{ "'{{.syncwave | default \"one\" }}'" }}
     spec:
-      project: {{ $val.environment }}-{{ trimSuffix "-argo" $repo.name }}-project
-      sources:
-        - repoURL: {{ $repo.repoUrl }}
-          targetRevision: {{ $repo.branch | default "main" }}
-          ref: values
+      project: default #{{ $val.environment }}-{{ trimSuffix "-argo" $repo.name }}-project
+      source:
+        repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
+        path: source-data/multicm-plugin-helm
+        targetRevision: testcase
       destination:
         name: {{ $val.clusterName }}
-        namespace: {{ "'{{.config.path.basename}}'" }}
+        namespace: '{{ "{{.appName}}" }}-{{ "{{.namespace}}" }}'
       syncPolicy:
         {{- if eq $val.environment "dev" }} # auto sync is enabled only on dev environment
         automated:
@@ -111,34 +111,18 @@ spec:
   templatePatch: |
     spec:
       sources:
-        - repoURL: {{ "'{{.repoURL}}'" }}
-          targetRevision: {{ "'{{.chartVersion}}'" }}
-          chart: {{ "'{{.chart}}'" }}
-          helm:
-            releaseName: {{ "{{.appName}}" }}-{{ "{{.config.path.basename}}" }}
-            passCredentials: true
+        - helm:
             parameters:
-              - name: awsDeploymentRegion
-                value: {{ $.Values.awsDeploymentRegion }}
-              - name: awsDeploymentEnvironment
-                value: {{ $val.environment }}
-              - name: awsDeploymentAccount
-                value: {{ $val.awsAccount | quote }}
-              - name: vpcEndpointCidr
-                value: {{ $val.vpcCidr  }}
-            {{"{{- if .contents }}"}}
-            {{"{{- range $fileName, $fileContents := .contents }}"}}
-              - name: 'configMapFiles.{{"{{ $fileName | replace \".\" \\\\\.\ }}"}}.data'
-                value: {{ "'{{ $fileContents }}'" }}
-            {{"{{- end }}"}}
+            {{- if .contents }}
+            {{- range $fileName, $fileContents := .contents }}
+              - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
+                value: '{{ $fileContents }}'
+            {{- end }}
               - name: "name"
-                value: {{ "'{{.name}}'" }}
-            {{"{{- end }}"}}
-            valueFiles:
-              - {{ "$values/{{.valuesPath}}" }}
-              - {{ "$values/{{.config.path.path}}/{{.appName}}/{{.appName}}.yaml" }}
+                value: '{{.name}}'
+            {{- end }}
         - repoURL: {{ $repo.repoUrl }}
-          targetRevision: {{ $repo.branch | default "main" }}
+          targetRevision: {{ $repo.branch | default "master" }}
           ref: values
 ---
 {{- end }}
