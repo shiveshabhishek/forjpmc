@@ -2,7 +2,7 @@
 clusters:
   - clusterName: in-cluster
     enableClusterWorkloads: true
-    environment: prod
+    environment: dev
     vpcCidr: 10.132.128.0/18 #partior-us-east-1-prod-blue CIDR
     awsAccount: "xxxxxxx" #Partior Prod AWS account
     namespaces:
