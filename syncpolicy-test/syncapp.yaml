@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sa-sync-test
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sa-sync-test
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      allowEmpty: true
+  ignoreDifferences:
+    - kind: PersistentVolumeClaim
+      jsonPointers:
+        - /spec/storageClassName
+  sources:
+    - repoURL: http://shiveshabhishek.github.io/forjpmc/helm-packages
+      targetRevision: 0.1.6
+      path: ''
+      helm:
+        valueFiles:
+          - $values/syncpolicy-test/testchart/client/values.yaml
+          - $valueOverlay/syncpolicy-test/testchart/client/values-prod.yaml
+        parameters:
+          - name: awsDeploymentRegion
+            value: us-east-1
+          - name: awsDeploymentEnvironment
+            value: dev
+          - name: vpcEndpointCidr
+            value: 10.2.0.0/18
+        passCredentials: true
+      chart: testchart
+    - repoURL: https://github.com/shiveshabhishek/forjpmc.git
+      targetRevision: master
+      ref: values
+    - repoURL: https://github.com/shiveshabhishek/forjpmc.git
+      targetRevision: master
+      ref: valueOverlay
