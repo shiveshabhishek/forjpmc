@@ -25,7 +25,7 @@ rbac:
  
 clusterWorkloadsRepos:
   - name: partior-quorum-argo
-    repoUrl: https://github.com/onyx-cd/partior-quorum-argo.git
+    repoUrl: https://github.com/shiveshabhishek/forjpmc.git
     branch: main
     preserveResourcesOnDeletion: false
     enableNSResourcesExtra: true
@@ -33,7 +33,7 @@ clusterWorkloadsRepos:
       "'elbv2.k8s.aws'":
         - TargetGroupBinding
   - name: partior-consul-argo
-    repoUrl: https://github.com/onyx-cd/partior-consul-argo.git
+    repoUrl: https://github.com/shiveshabhishek/forjpmc.git
     branch: main
     enableNSResourcesExtra: true
     nsextra:
@@ -75,6 +75,6 @@ clusterWorkloadsRepos:
         - IngressGateway
         - ExportedServices
   - name: partior-quorum-dba-argo
-    repoUrl: https://github.com/onyx-cd/partior-quorum-dba-argo.git
+    repoUrl: https://github.com/shiveshabhishek/forjpmc.git
     branch: main
     preserveResourcesOnDeletion: false
