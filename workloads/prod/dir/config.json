@@ -1,17 +1,20 @@
 [
 {
-  "appName": "app1",
-  "name": "app1",
-  "configPath": ""
+  "appName": "prod1",
+  "name": "prod1",
+  "configPath": "",
+  "namespace": "ns1"
 },
 {
-  "appName": "app2",
-  "name": "app2",
-  "configPath": ""
+  "appName": "prod2",
+  "name": "prod2",
+  "configPath": "",
+  "namespace": "ns2"
 },
 {
-  "appName": "app3",
-  "name": "app3",
-  "configPath": ""
+  "appName": "prod3",
+  "name": "prod3",
+  "configPath": "",
+  "namespace": "ns3"
 }
 ]

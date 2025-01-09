@@ -4,5 +4,5 @@
   "chart": "onyxcloud/onyx-application",
   "chartVersion": "1.30.2",
   "valuesPath": "base/tessera-db-creds-secret/values.yaml",
-  "syncwave": "one"
+  "syncwave": "three"
 }

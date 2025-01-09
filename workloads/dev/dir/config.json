@@ -1,17 +1,21 @@
 [
-{
-  "appName": "app1",
-  "name": "app1",
-  "configPath": ""
-},
-{
-  "appName": "app2",
-  "name": "app2",
-  "configPath": ""
-},
-{
-  "appName": "app3",
-  "name": "app3",
-  "configPath": ""
-}
+  {
+    "appName": "dev1",
+    "name": "dev1",
+    "configPath": "",
+    "namespace": "ns1"
+  },
+  {
+    "appName": "dev2",
+    "name": "dev2",
+    "configPath": "",
+    "namespace": "ns2"
+  },
+  {
+    "appName": "dev3",
+    "name": "dev3",
+    "configPath": "",
+    "namespace": "ns3"
+  }
 ]
+  

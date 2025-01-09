@@ -1,6 +1,6 @@
 #sample-values2.yaml
 clusters:
-  - clusterName: partior-quorum-prod-blue
+  - clusterName: in-cluster
     enableClusterWorkloads: true
     environment: prod
     vpcCidr: 10.132.128.0/18 #partior-us-east-1-prod-blue CIDR
