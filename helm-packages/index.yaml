@@ -3,7 +3,17 @@ entries:
   testchart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-09T16:04:02.604032441+05:30"
+    created: "2025-01-09T16:46:47.923118465+05:30"
+    description: A Helm chart for Kubernetes
+    digest: d36f42defb69bf117c0df75c76462145af7aa134fc82bbf79f268e3e143e17cf
+    name: testchart
+    type: application
+    urls:
+    - testchart-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-01-09T16:46:47.921558889+05:30"
     description: A Helm chart for Kubernetes
     digest: 3b8a38191679b55472f5523ff1c5d99af0917de8a6e12b9883ba3e83820b628b
     name: testchart
@@ -13,7 +23,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-09T16:04:02.602399252+05:30"
+    created: "2025-01-09T16:46:47.919876747+05:30"
     description: A Helm chart for Kubernetes
     digest: ff85eca1889cdf0e0828d8e1989046e115aa3d1d9927d4745de6080e173777c2
     name: testchart
@@ -23,7 +33,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-09T16:04:02.601181196+05:30"
+    created: "2025-01-09T16:46:47.918510139+05:30"
     description: A Helm chart for Kubernetes
     digest: 880457298d26a224e19fb12eb3e4db27fb2b868e63a9968e45501adac92eeba7
     name: testchart
@@ -31,4 +41,4 @@ entries:
     urls:
     - testchart-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-09T16:04:02.599407066+05:30"
+generated: "2025-01-09T16:46:47.916389335+05:30"
