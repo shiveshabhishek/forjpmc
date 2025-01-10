@@ -82,7 +82,7 @@ spec:
         syncWave: {{ "'{{.syncwave | default \"one\" }}'" }}
     spec:
       project: default #{{ $val.environment }}-{{ trimSuffix "-argo" $repo.name }}-project
-      source:
+      sources:
         repoURL: "https://github.com/OpsMx/argo-customer-demo.git"
         path: source-data/multicm-plugin-helm
         targetRevision: testcase
