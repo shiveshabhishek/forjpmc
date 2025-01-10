@@ -1,8 +1,7 @@
-
 {
-  "repoURL": "onyxplatform.jfrog.io/onyx-container",
-  "chart": "onyxcloud/onyx-application",
-  "chartVersion": "1.30.2",
-  "valuesPath": "base/tessera-db-creds-secret/values.yaml",
-  "syncwave": "three"
+  "repoURL": "shiveshabhishek.github.io/helm-from-scratch/packages",
+  "chart": "chart2",
+  "chartVersion": "0.1.0",
+  "valuesPath": "base/dev2/values.yaml",
+  "syncwave": "two"
 }
