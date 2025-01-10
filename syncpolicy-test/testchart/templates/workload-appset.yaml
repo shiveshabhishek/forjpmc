@@ -124,6 +124,10 @@ spec:
         - repoURL: {{ $repo.repoUrl }}
           targetRevision: {{ $repo.branch | default "master" }}
           ref: values
+        - repoURL: {{ "'{{.repoURL}}'" }}
+          targetRevision: {{ "'{{.chartVersion}}'" }}
+          chart: {{ "'{{.chart}}'" }}
+          path: ''
 ---
 {{- end }}
 {{- end }}
