@@ -12,31 +12,31 @@ spec:
   generators:
     - matrix:
         generators:
-          - matrix:
-              generators:
-                - git:
-                    repoURL: {{ $repo.repoUrl }}
-                    revision: {{ $repo.branch | default "master" }}
-                    files:
-                      - path: "workloads/{{ $val.environment }}/*/config.json"
-                    pathParamPrefix: config
-                    requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
-                - git:
-                    repoURL: {{ $repo.repoUrl }}
-                    revision: {{ $repo.branch | default "master" }}
-                    files:
-                      - path: "base/{{ "{{.appName}}" }}/config.json"
-                    pathParamPrefix: appConfig
-                    requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
-          - plugin:
-              configMapRef:
-                name: applicationset-hello-plugin #configmap-plugin
-              input:
-                parameters:
-                  branch: master #{{ $repo.branch | default "master" }}
-                  repo_name: gopaljayanthi/forjpmc #"onyx-cd/{{ $repo.name }}"
-                  folder_path: "pluginfiles" #folder_path: '{{ "{{.configPath | default \"\"}}" }}' #Provided by git file generator
-              requeueAfterSeconds: {{ $repo.pluginRequeueInterval | default 1200 }}
+          #- matrix:
+          #    generators:
+          - git:
+              repoURL: {{ $repo.repoUrl }}
+              revision: {{ $repo.branch | default "master" }}
+              files:
+                - path: "workloads/{{ $val.environment }}/*/config.json"
+              pathParamPrefix: config
+              requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
+          - git:
+              repoURL: {{ $repo.repoUrl }}
+              revision: {{ $repo.branch | default "master" }}
+              files:
+                - path: "base/{{ "{{.appName}}" }}/config.json"
+              pathParamPrefix: appConfig
+              requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
+          #- plugin:
+          #    configMapRef:
+          #      name: applicationset-hello-plugin #configmap-plugin
+          #    input:
+          #      parameters:
+          #        branch: master #{{ $repo.branch | default "master" }}
+          #        repo_name: gopaljayanthi/forjpmc #"onyx-cd/{{ $repo.name }}"
+          #        folder_path: "pluginfiles" #folder_path: '{{ "{{.configPath | default \"\"}}" }}' #Provided by git file generator
+          #    requeueAfterSeconds: {{ $repo.pluginRequeueInterval | default 1200 }}
   syncPolicy:
     preserveResourcesOnDeletion: {{ hasKey $repo "preserveResourcesOnDeletion" | ternary $repo.preserveResourcesOnDeletion true }}
   strategy:
