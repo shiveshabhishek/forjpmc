@@ -73,7 +73,7 @@ spec:
   {{- end }} 
   template:
     metadata:
-      name: '{{ "{{.appName}}" }}-{{ "{{.config.path.basename}}" }}-{{$val.environment}}'
+      name: '{{ "{{.appName}}" }}-{{ "{{.syncwave}}" }}-{{ "{{.config.path.basename}}" }}-{{$val.environment}}'
       {{- if $val.enableServerSideDiff }} 
       annotations:
         argocd.argoproj.io/compare-options: ServerSideDiff=true
