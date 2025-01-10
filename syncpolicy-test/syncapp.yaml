@@ -20,7 +20,7 @@ spec:
         - /spec/storageClassName
   sources:
     - repoURL: http://shiveshabhishek.github.io/forjpmc/helm-packages
-      targetRevision: 0.1.6
+      targetRevision: 0.1.8
       path: ''
       helm:
         valueFiles:
