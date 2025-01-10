@@ -111,19 +111,6 @@ spec:
   templatePatch: |
     spec:
       sources:
-        - helm:
-            parameters:
-            {{- if .contents }}
-            {{- range $fileName, $fileContents := .contents }}
-              - name: 'configMapFiles.{{ $fileName | replace "." "\\." }}'
-                value: '{{ $fileContents }}'
-            {{- end }}
-              - name: "name"
-                value: '{{.name}}'
-            {{- end }}
-        - repoURL: {{ $repo.repoUrl }}
-          targetRevision: {{ $repo.branch | default "master" }}
-          ref: values
         - repoURL: {{ "'{{.repoURL}}'" }}
           targetRevision: {{ "'{{.chartVersion}}'" }}
           chart: {{ "'{{.chart}}'" }}
