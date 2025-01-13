@@ -90,12 +90,6 @@ spec:
         name: {{ $val.clusterName }}
         namespace: '{{ "{{.appName}}" }}-{{ trimSuffix "-argo" $repo.name }}-{{ "{{.namespace}}" }}'
       syncPolicy:
-        {{- if eq $val.environment "dev" }} # auto sync is enabled only on dev environment
-        automated:
-          prune: true
-          #selfHeal: true
-          allowEmpty: true
-        {{- end }}
         syncOptions:
           - CreateNamespace=true
         retry:
