@@ -1,0 +1,20 @@
+[
+{
+  "appName": "dev1",
+  "name": "dev1",
+  "configPath": "",
+  "namespace": "ns1"
+},
+{
+  "appName": "dev2",
+  "name": "dev2",
+  "configPath": "",
+  "namespace": "ns2"
+},
+{
+  "appName": "dev3",
+  "name": "dev3",
+  "configPath": "",
+  "namespace": "ns3"
+}
+]
