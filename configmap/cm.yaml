@@ -1,8 +1,0 @@
-apiVersion: v1
-data:
-  myvalue: twosources
-  secondkey: secondvalue
-  thirdkey: thirdvalue
-kind: ConfigMap
-metadata:
-  name: twosources
