@@ -88,7 +88,7 @@ spec:
           targetRevision: testcase
       destination:
         name: {{ $val.clusterName }}
-        namespace: '{{ "{{.appName}}" }}-{{ "{{.namespace}}" }}'
+        namespace: '{{ "{{.appName}}" }}-{{ trimSuffix "-argo" $repo.name }}-{{ "{{.namespace}}" }}'
       syncPolicy:
         {{- if eq $val.environment "dev" }} # auto sync is enabled only on dev environment
         automated:
