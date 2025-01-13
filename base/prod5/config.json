@@ -1,7 +1,0 @@
-{
-  "repoURL": "https://shiveshabhishek.github.io/helm-from-scratch/packages",
-  "chart": "chart2",
-  "chartVersion": "0.1.0",
-  "valuesPath": "base/prod5/values.yaml",
-  "syncwave": "one"
-}
