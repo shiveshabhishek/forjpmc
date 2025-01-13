@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sa-sync-test
+  name: sa-sync-test-prod
   namespace: argocd
 spec:
   project: default
