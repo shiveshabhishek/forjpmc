@@ -18,7 +18,7 @@ spec:
               repoURL: {{ $repo.repoUrl }}
               revision: {{ $repo.branch | default "master" }}
               files:
-                - path: "workloads/{{ $val.environment }}/**/config.json"
+                - path: "workloads/{{ $val.environment }}/*/config.json"
               pathParamPrefix: config
               requeueAfterSeconds: {{ $repo.gitRequeue | default 1200 }}
           - git:
