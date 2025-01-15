@@ -26,7 +26,7 @@ rbac:
 clusterWorkloadsRepos:
   - name: partior-quorum-argo
     repoUrl: https://github.com/shiveshabhishek/forjpmc.git
-    branch: master
+    branch: coin-perf
     preserveResourcesOnDeletion: false
     enableNSResourcesExtra: true
     nsextra:
@@ -34,7 +34,7 @@ clusterWorkloadsRepos:
         - TargetGroupBinding
   - name: partior-consul-argo
     repoUrl: https://github.com/shiveshabhishek/forjpmc.git
-    branch: master
+    branch: coin-perf
     enableNSResourcesExtra: true
     nsextra:
       "'elbv2.k8s.aws'":
@@ -76,5 +76,5 @@ clusterWorkloadsRepos:
         - ExportedServices
   - name: partior-quorum-dba-argo
     repoUrl: https://github.com/shiveshabhishek/forjpmc.git
-    branch: master
+    branch: coin-perf
     preserveResourcesOnDeletion: false
