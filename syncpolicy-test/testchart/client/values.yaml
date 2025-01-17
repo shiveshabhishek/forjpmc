@@ -27,7 +27,7 @@ clusterWorkloadsRepos:
   - name: partior-quorum-argo
     repoUrl: https://github.com/shiveshabhishek/forjpmc.git
     branch: checkPreserveResourceOnDeletion
-    preserveResourcesOnDeletion: false
+    preserveResourcesOnDeletion: true
     enableNSResourcesExtra: true
     nsextra:
       "'elbv2.k8s.aws'":
@@ -50,7 +50,7 @@ clusterWorkloadsRepos:
         #- Mesh
         #- ProxyDefaults
     enableCRD: true
-    preserveResourcesOnDeletion: false
+    preserveResourcesOnDeletion: true
     crds:
       "'rbac.authorization.k8s.io'":
         - ClusterRole
@@ -77,4 +77,4 @@ clusterWorkloadsRepos:
   - name: partior-quorum-dba-argo
     repoUrl: https://github.com/shiveshabhishek/forjpmc.git
     branch: checkPreserveResourceOnDeletion
-    preserveResourcesOnDeletion: false
+    preserveResourcesOnDeletion: true
