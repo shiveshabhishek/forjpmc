@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: coin-perf-test
+spec:
+  destination:
+    name: ''
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    path: syncpolicy-test/testchart
+    repoURL: https://github.com/shiveshabhishek/forjpmc.git
+    targetRevision: coin-perf
+    helm:
+      valueFiles:
+        - values.yaml
+        - client/values.yaml
+        - client/values-dev.yaml
+  sources: []
+  project: default
