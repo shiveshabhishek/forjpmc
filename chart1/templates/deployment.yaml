@@ -28,12 +28,12 @@ spec:
         - sh
         - -c
         - |
-          if [ ! -f /usr/share/nginx/html/{{ .Chart.Name }}-index-html-configmap ]; then
+          if [ ! -f /config/index.html ]; then
             echo "ConfigMap data not found. Exiting."
             exit 1
           fi
         volumeMounts:
-        - name: config-volume
+        - name: nginx-index-file
           mountPath: /config
       containers:
         - name: {{ .Chart.Name }}
