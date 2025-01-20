@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: preserveResourceOnDeletion
+spec:
+  destination:
+    name: ''
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    path: syncpolicy-test/testchart
+    repoURL: https://github.com/shiveshabhishek/forjpmc.git
+    targetRevision: checkPreserveResourceOnDeletion
+    helm:
+      valueFiles:
+        - client/values-dev.yaml
+        - client/values.yaml
+        - values.yaml
+  sources: []
+  project: default
