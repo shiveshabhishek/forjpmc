@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-service
+  #namespace: {{ .Chart.Name }}-{{ .Values.namespace }}
+spec:
+  selector:
+    app.kubernetes.io/instance: {{ .Chart.Name }}
+    app: {{ .Values.env.name }}-nginx
+    namespace: {{ .Release.Namespace }}
+  type: {{ .Values.service.type }}
+  ports:
+    - protocol: {{ .Values.service.protocol | default "TCP" }}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}

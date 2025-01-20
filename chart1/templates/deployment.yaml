@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-nginx
+  #namespace: {{ .Chart.Name }}-{{ .Values.namespace }}
+  labels:
+    app: {{ .Values.env.name }}-nginx
+    app.kubernetes.io/instance: {{ .Chart.Name }}
+    namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.env.name }}-nginx
+      app.kubernetes.io/instance: {{ .Chart.Name }}
+      namespace: {{ .Release.Namespace }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.env.name }}-nginx
+        app.kubernetes.io/instance: {{ .Chart.Name }}
+        namespace: {{ .Release.Namespace }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-index-file
+              mountPath: /usr/share/nginx/html/
+      volumes:
+        - name: nginx-index-file
+          configMap:
+            name: {{ .Chart.Name }}-index-html-configmap
