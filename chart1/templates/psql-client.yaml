@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: psql-client
+  labels:
+    app: psql-client
+spec:
+  containers:
+  - name: psql
+    image: postgres:15-alpine # Use the desired PostgreSQL version
+    command: [ "sleep", "infinity" ]
+    tty: true
+    stdin: true
+  restartPolicy: Never
