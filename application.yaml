@@ -18,8 +18,8 @@ spec:
           value: charttest
   sources: []
   project: default
-  syncPolicy: {}
-    # automated:
+  syncPolicy:
+     automated: {}
     #   prune: true
     #   selfHeal: true
      retry:
