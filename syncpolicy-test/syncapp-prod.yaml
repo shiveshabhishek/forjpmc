@@ -24,8 +24,8 @@ spec:
       path: ''
       helm:
         valueFiles:
-          - $values/syncpolicy-test/testchart/client/values.yaml
-          - $valueOverlay/syncpolicy-test/testchart/client/values-prod.yaml
+          - $values/syncpolicy-test/client/values.yaml
+          - $valueOverlay/syncpolicy-test/client/values-prod.yaml
         parameters:
           - name: awsDeploymentRegion
             value: us-east-1

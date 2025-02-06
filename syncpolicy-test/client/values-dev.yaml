@@ -1,0 +1,19 @@
+#sample-values2.yaml
+clusters:
+  - clusterName: in-cluster
+    enableClusterWorkloads: true
+    environment: dev
+    vpcCidr: 10.132.128.0/18 #partior-us-east-1-prod-blue CIDR
+    awsAccount: "xxxxxxx" #Partior Prod AWS account
+    namespaces:
+      partior-quorum-argo:
+        allowed:
+          - quorum
+          - quorum-jpmus
+          - quorum-jpmsg
+      partior-consul-argo:
+        allowed:
+          - consul
+      partior-quorum-dba-argo: #Define namespaces for partior-quorum-dba-argo here
+        allowed:
+          - dba-app
