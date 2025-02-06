@@ -2,7 +2,7 @@
 Udate the version present in `Chart.yaml` with new version (not the appVersion)
 Run below commands from root directory:
 ```
-helm package testchart/ -d ../helm-packages/
+helm package syncpolicy-test/testchart/ -d helm-packages/
 helm repo index helm-packages/
 
 ```
