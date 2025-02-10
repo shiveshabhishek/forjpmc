@@ -36,8 +36,8 @@ spec:
         passCredentials: true
       chart: testchart
     - repoURL: https://github.com/shiveshabhishek/forjpmc.git
-      targetRevision: master
+      targetRevision: syncPolicy-issue-with-steps
       ref: values
     - repoURL: https://github.com/shiveshabhishek/forjpmc.git
-      targetRevision: master
+      targetRevision: syncPolicy-issue-with-steps
       ref: valueOverlay
